@@ -45,6 +45,34 @@ function goToStep2(){
   document.getElementById('itypeIbi').className='itype-btn';
   setInputType('signal');
 }
+/* Back from the main app (raw-signal/interval setup, either mode) to the
+   upload screen — one step back, not all the way to mode selection. Reflects
+   whichever mode is CURRENTLY active (currentMode), which can differ from
+   the mode originally picked at step 1 if the user has since used the
+   HRV/BRV toggle inside the main app. Clears loaded data/charts, since
+   returning here means a (possibly new) file needs to be loaded again to
+   proceed — mirrors backToStep1()'s cleanup, just stops one screen earlier
+   and leaves the mode-selection cards/startMode untouched. */
+function backToStep2(){
+  startMode=currentMode;
+  document.body.classList.remove('on-step1','on-main');
+  document.body.classList.add('on-step2');
+  document.body.style.overflow='';
+  document.body.style.height='';
+  document.getElementById('mainSec').style.display='none';
+  document.getElementById('step1').style.display='none';
+  document.getElementById('step2').style.display='block';
+  document.getElementById('step2ModeLabel').textContent=startMode.toUpperCase()+' Analysis';
+  const r=document.getElementById('hrvResultSec');if(r)r.style.display='none';
+  const b=document.getElementById('brvResultSec');if(b)b.style.display='none';
+  Object.keys(charts).forEach(k=>{try{charts[k].destroy();}catch(e){}delete charts[k];});
+  rawRows=[];allCols=[];beatData=[];breathData=[];ibiXY=[];fullIbis=[];fullIbiTimes=[];
+  ['hrvSigSetup','hrvIbiSetup','brvSigSetup','brvIbiSetup'].forEach(id=>{const c=document.getElementById(id);if(c)c.classList.remove('setup-card-collapsed');});
+  document.getElementById('fi').value='';
+  document.getElementById('itypeSig').className='itype-btn active';
+  document.getElementById('itypeIbi').className='itype-btn';
+  setInputType('signal');
+}
 function backToStep1(targetMode){
   // Switch body class first — CSS immediately hides mainSec and step2
   document.body.classList.remove('on-step2','on-main');
