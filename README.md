@@ -1,7 +1,7 @@
 # VAASI-GUI
 A basic GUI for performing Breathing Rate Variability (BRV) and Heart Rate Variability (HRV) analysis
 
-VAASI is a browser-based graphical tool for computing **Heart Rate Variability (HRV)** and **Breath Rate Variability (BRV)** from physiological signals. It runs entirely client-side — no installation, server, or account required — and supports raw signal input (PPG for HRV and respiratory waveforms for BRV) as well as pre-extracted interval data.
+VAASI is a browser-based graphical tool for computing **Heart Rate Variability (HRV)** and **Breath Rate Variability (BRV)** from physiological signals. It runs entirely client-side — no installation, server, or account required — and supports raw signal input (PPG for HRV/PRV and respiratory waveforms for BRV) as well as pre-extracted interval data.
 
 This tool was developed to support the analysis presented in:
 
